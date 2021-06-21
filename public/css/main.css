@@ -88,7 +88,7 @@ form {
     background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),
     url(https://previews.123rf.com/images/panychev/panychev1604/panychev160400429/55678176-light-blue-color-background-abstract-computer-generated-illustration.jpg)
     no-repeat center center/cover;
-    position:absolute;
+    position: relative;
     object-fit: fill;
     left: 0;
     top: 0;
