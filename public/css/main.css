@@ -49,9 +49,9 @@ form {
 .registration-container{
     display: block;
     position: absolute;
-    left: 35%;
-    right: 35%;
-    bottom: 5%;
+    left: 25%;
+    right: 25%;
+    bottom: 1%;
     width: auto;
     border-bottom-right-radius: 25px;
     border-top-left-radius: 25px;
