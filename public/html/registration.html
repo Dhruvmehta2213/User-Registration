@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>User Registration</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+</head>
+<body>
+    <div class="bg-img"></div>
+    <div class="container">
+        <h1 style="text-align : center">User Registration</h1>
+        <form name="registrationform" action="/" onsubmit="return validateForm()" method="POST"/>
+            <label class="form-group" for="first_name">First Name:</label><br>
+            <input type="text" name="first_name" placeholder="Enter your First Name"/><br>
+            <label class="form-group" for="last_name">Last Name:</label><br>
+            <input type="text" name="last_name" placeholder="Enter your Last Name" /><br>
+            <label class="form-group" for="address1">Address 1:</label><br>
+            <input type="text" name="address1" placeholder="Enter your Address 1" /><br>
+            <label class="form-group" for="address2">Address 2:</label><br>
+            <input type="text" name="address2" placeholder="Enter your Address 2" /><br>
+            <label class="form-group" for="city">City:</label><br>
+            <input type="text" name="city" placeholder="Select your City" /><br>
+            <label class="form-group" for="state">State:</label><br>
+            <select name="stateList">
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+            </select><br>	
+            <label class="form-group" for="zipcode">Zip:</label><br>
+            <input type="number" name="zipcode" placeholder="Enter your zip code"/><br>
+            <label class="form-group" for="country">Country:</label><br>
+            <input type="text" name="country" value="US" placeholder="Please enter US only!" /><br><br>
+            <input class = "btn" type="submit" name="Submit" />
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            var fname = document.forms["registrationform"]["first_name"];
+            var lname = document.forms["registrationform"]["last_name"];
+            var address1 = document.forms["registrationform"]["address1"];
+            var city = document.forms["registrationform"]["city"];
+            var zipcode = document.forms["registrationform"]["zipcode"];
+            var country = document.forms["registrationform"]["country"];
+
+            if(fname.value == ""){
+                window.alert("First Name cannot be empty!!");
+                fname.focus();
+                return false;
+            }else if(lname.value == ""){
+                window.alert("Last Name cannot be empty!!");
+                fname.focus();
+                return false;
+            }else if(address1.value == ""){
+                window.alert("Address1 cannot be empty!!");
+                fname.focus();
+                return false;
+            }else if(city.value == ""){
+                window.alert("City cannot be empty!!");
+                fname.focus();
+                return false;
+            }else if(zipcode.value.toString().length!= 5 && zipcode.value.toString().length!= 9){
+                window.alert("Zipcode can only be of 5 or 9 digits!!");
+                fname.focus();
+                return false;
+            }else if(country.value != "US"){
+                window.alert("Country can only be US!!");
+                fname.focus();
+                return false;
+            }else{
+                return confirm ('Do you want to submit your data for registration?');
+            }
+        }
+    </script>
+</body>
+</html>
