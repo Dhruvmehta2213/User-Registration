@@ -63,9 +63,9 @@ form {
 }
 
 .form-group{
-    margin: 10px 0;
-    font-weight: 400;
-    letter-spacing: 1.5px;
+    margin: 8px 0;
+    font-weight: 200;
+    letter-spacing: 1 px;
 }
 
 /* Button Style */
