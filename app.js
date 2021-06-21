@@ -14,11 +14,14 @@ app.set("view engine","ejs");
 //For serving the static files such as html,css or images
 app.use(express.static("public"));
 
+//Using the express validator library for the server-side validation
+const { body,validationResult } = require('express-validator');
+
 //Using the mongoose library for managing data between mongodb and node
 const mongoose = require("mongoose");
 
 //Create connection with mongodb database and collection
-mongoose.connect("mongodb+srv://dhruvmehta:SOULMATE@cluster0.o8x5v.mongodb.net/userDB?retryWrites=true&w=majority", {useNewUrlParser : true, useUnifiedTopology : true});
+mongoose.connect("mongodb+srv://dhruvmehta:SOULMATE@cluster0.o8x5v.mongodb.net/userDB?retryWrites=true&w=majority", {useNewUrlParser : true, useFindAndModify: false, useUnifiedTopology : true});
 
 //Creating the schema i.e. the fields for the user collection 
 const userSchema = new mongoose.Schema({
@@ -28,7 +31,7 @@ const userSchema = new mongoose.Schema({
     address2 : String,
     city : String,
     state : String,
-    zipCode : Number,
+    zipCode : String,
     country : String,
     date : String
 });
@@ -38,42 +41,60 @@ const User = mongoose.model("User", userSchema);
 
 //On the application load the user registration page
 app.get("/", (req,res) => {
-    res.sendFile(__dirname + "/public/html/registration.html");
+    res.render(__dirname + '/views/registration.ejs');
 });
 
 //On posting the user registration data parse the data to database or show the error
-app.post("/", (req, res) => {
 
-    //Getting the user registration data and time
-    var dateTimeObject = new Date();
-    var date = dateTimeObject.getFullYear() +"-"+ (dateTimeObject.getMonth()+1) +"-"+ dateTimeObject.getDate();
-    var time = dateTimeObject.getHours() +":"+ dateTimeObject.getMinutes() +":"+ dateTimeObject.getSeconds();
+//The second parameter is for server side validation of data in order to safeguard website from cross site scripting and sql injection attacks. It checks for empty fields, zipcode digits and country values 
+app.post("/",[body('first_name', 'The First Name cannot be empty').trim().isLength({ min: 1 }).escape(), body('last_name', 'The Last Name cannot be empty').trim().isLength({ min: 1 }).escape(), 
+body('address1', 'The Address1 cannot be empty').trim().isLength({ min: 1 }).escape(), body('city', 'The City cannot be empty').trim().isLength({ min: 1 }).escape(),
+body('zipcode', 'The Zipcode can only be of 5 or 9 digits').trim().matches(/(^\d{5}$)|(^\d{5}-\d{4}$)/), body('country', 'The Country can only be US').equals("US")],
+(req, res) => {
 
-    //Create the user object by fetching the data from user input
-    const user = new User({
-        firstName : req.body.first_name,
-        lastName : req.body.last_name,
-        address1 : req.body.address1,
-        address2 : req.body.address2,
-        city : req.body.city,
-        state : req.body.stateList,
-        zipCode : req.body.zipcode,
-        country : req.body.country,
-        date : date +" "+ time
-    });
+    //Get the errors if any during the server side validation
+    const errors = validationResult(req);
 
-    //Save the data to userDB and the user collection
-    user.save((err) => {
-        //If error then send the error
-        if(err){
-            res.send(err);
-        }else{
-            //Render the success page with the User data
-            res.render(__dirname + '/views/success.ejs',{first_name:req.body.first_name, last_name:req.body.last_name, address1Data:req.body.address1, address2Data:req.body.address2, cityData:req.body.city,
-                stateData:req.body.stateList, zipCodeData:req.body.zipcode, countryData:req.body.country,});
-        }   
-    });
-})
+    //If there are errors then send them to the registration page template in an alert object where you can iterate through the array and display the errors found
+    if(!errors.isEmpty()){
+        const alert = errors.array()
+        res.render(__dirname + '/views/registration.ejs', {
+            alert
+        });
+    }
+    //If theres no error then enter the data in database
+    else{
+        //Getting the user registration data and time
+        var dateTimeObject = new Date();
+        var date = dateTimeObject.getFullYear() +"-"+ (dateTimeObject.getMonth()+1) +"-"+ dateTimeObject.getDate();
+        var time = dateTimeObject.getHours() +":"+ dateTimeObject.getMinutes() +":"+ dateTimeObject.getSeconds();
+
+        //Create the user object by fetching the data from user input
+        const user = new User({
+            firstName : req.body.first_name,
+            lastName : req.body.last_name,
+            address1 : req.body.address1,
+            address2 : req.body.address2,
+            city : req.body.city,
+            state : req.body.stateList,
+            zipCode : req.body.zipcode,
+            country : req.body.country,
+            date : date +" "+ time
+        });
+
+        //Save the data to userDB and the user collection
+        user.save((err) => {
+            //If error then send the error
+            if(err){
+                res.send(err);
+            }else{
+                //Render the success page with the User data
+                res.render(__dirname + '/views/success.ejs',{first_name:req.body.first_name, last_name:req.body.last_name, address1Data:req.body.address1, address2Data:req.body.address2, cityData:req.body.city,
+                    stateData:req.body.stateList, zipCodeData:req.body.zipcode, countryData:req.body.country,});
+            }   
+        });
+    }
+});
 
 //Render the admin page with all the user data in descending order
 app.get("/admin", (req, res) => {

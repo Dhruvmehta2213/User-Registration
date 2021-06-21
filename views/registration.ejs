@@ -4,11 +4,21 @@
     <meta charset="utf-8" />
     <title>User Registration</title>
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
     <div class="bg-img"></div>
-    <div class="container">
+    <div class="registration-container">
         <h1 style="text-align : center">User Registration</h1>
+
+        <% if(typeof alert != 'undefined') { %>
+            <% alert.forEach(function(error) { %>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <%= error.msg %>
+                  </div>
+            <% }) %>
+        <% } %>
+
         <form name="registrationform" action="/" onsubmit="return validateForm()" method="POST"/>
             <label class="form-group" for="first_name">First Name:</label><br>
             <input type="text" name="first_name" placeholder="Enter your First Name"/><br>
@@ -74,11 +84,11 @@
                     <option value="WI">Wisconsin</option>
                     <option value="WY">Wyoming </option>
             </select><br>	
-            <label class="form-group" for="zipcode">Zip:</label><br>
-            <input type="number" name="zipcode" placeholder="Enter your zip code"/><br>
+            <label class="form-group" for="zipcode">Zip: (For 9 digit zipcode use the format XXXXX-XXXX)</label><br>
+            <input type="text" name="zipcode" placeholder="Enter your zip code"/><br>
             <label class="form-group" for="country">Country:</label><br>
             <input type="text" name="country" value="US" placeholder="Please enter US only!" /><br><br>
-            <input class = "btn" type="submit" name="Submit" />
+            <input class = "my-btn" type="submit" name="Submit" />
         </form>
     </div>
 
@@ -119,8 +129,8 @@
                 return false;
             }
             //Check if the zipcode is not 5 or 9 digit code 
-            else if(zipcode.value.toString().length!= 5 && zipcode.value.toString().length!= 9){
-                window.alert("Zipcode can only be of 5 or 9 digits!!");
+            else if(!(/(^\d{5}$)|(^\d{5}-\d{4}$)/).test(zipcode.value)){
+                window.alert("Zipcode can only be of 5 or 9 digits and not " + zipcode.value.length +" digits!!");
                 fname.focus();
                 return false;
             }
