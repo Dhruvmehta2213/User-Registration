@@ -1,4 +1,8 @@
 /* Table display */
+table{
+    box-shadow: 0 0 5px #888;
+}
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -13,6 +17,7 @@ th{
 td {
     padding: 10px;
     text-align: center;
+    font-weight: bold;
 }
 
 .heading{
