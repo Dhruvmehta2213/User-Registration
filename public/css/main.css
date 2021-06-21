@@ -20,6 +20,10 @@ td {
     font-weight: bold;
 }
 
+tr:hover{
+    background-color: aquamarine;
+}
+
 .heading{
     background-color: blue;
 }
