@@ -4,29 +4,31 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
 </head>
 <body>
-    <h1>Hello <%= first_name %>. Congratulations you have successfully registered into the system!!</h1>
-    <p>Your details are as follows:</p>
-    <table>
-        <tr class="heading">
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Address 1</th>
-            <th>Address 2</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Zip Code</th>
-            <th>Country</th>
-        </tr>
-        <tr>
-            <td><%= first_name %></td>
-            <td><%= last_name %></td>
-            <td><%= address1Data %></td>
-            <td><%= address2Data %></td>
-            <td><%= cityData %></td>
-            <td><%= stateData %></td>
-            <td><%= zipCodeData %></td>
-            <td><%= countryData %></td>
-        </tr>
-    </table>
+    <h1 style="color : green; text-align : center">Hello <%= first_name %>. Congratulations you have successfully registered into the system!!</h1>
+    <div class="admin">
+            <p>Your details are as follows:</p>
+            <table>
+                <tr class="heading">
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address 1</th>
+                    <th>Address 2</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip Code</th>
+                    <th>Country</th>
+                </tr>
+                <tr>
+                    <td><%= first_name %></td>
+                    <td><%= last_name %></td>
+                    <td><%= address1Data %></td>
+                    <td><%= address2Data %></td>
+                    <td><%= cityData %></td>
+                    <td><%= stateData %></td>
+                    <td><%= zipCodeData %></td>
+                    <td><%= countryData %></td>
+                </tr>
+            </table>
+    </div>
 </body>
 </html>
