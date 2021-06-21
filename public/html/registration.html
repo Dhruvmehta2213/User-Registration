@@ -72,7 +72,7 @@
                     <option value="WA">Washington</option>
                     <option value="WV">West Virginia</option>
                     <option value="WI">Wisconsin</option>
-                    <option value="WY">Wyoming</option>
+                    <option value="WY">Wyoming </option>
             </select><br>	
             <label class="form-group" for="zipcode">Zip:</label><br>
             <input type="number" name="zipcode" placeholder="Enter your zip code"/><br>
@@ -84,38 +84,53 @@
 
     <script>
         function validateForm() {
+            //Get all the input data parsed to the forms on submit
             var fname = document.forms["registrationform"]["first_name"];
             var lname = document.forms["registrationform"]["last_name"];
             var address1 = document.forms["registrationform"]["address1"];
             var city = document.forms["registrationform"]["city"];
             var zipcode = document.forms["registrationform"]["zipcode"];
             var country = document.forms["registrationform"]["country"];
-
+            
+            //Check if the first name is empty
             if(fname.value == ""){
+                //Show the alert
                 window.alert("First Name cannot be empty!!");
                 fname.focus();
+                //False so the post request is not submitted and requires the user to make the changes
                 return false;
-            }else if(lname.value == ""){
+            }
+            //Check if the last name is empty
+            else if(lname.value == ""){
                 window.alert("Last Name cannot be empty!!");
                 fname.focus();
                 return false;
-            }else if(address1.value == ""){
+            }
+            //Check if the address1 is empty
+            else if(address1.value == ""){
                 window.alert("Address1 cannot be empty!!");
                 fname.focus();
                 return false;
-            }else if(city.value == ""){
+            }
+            //Check if the city is empty
+            else if(city.value == ""){
                 window.alert("City cannot be empty!!");
                 fname.focus();
                 return false;
-            }else if(zipcode.value.toString().length!= 5 && zipcode.value.toString().length!= 9){
+            }
+            //Check if the zipcode is not 5 or 9 digit code 
+            else if(zipcode.value.toString().length!= 5 && zipcode.value.toString().length!= 9){
                 window.alert("Zipcode can only be of 5 or 9 digits!!");
                 fname.focus();
                 return false;
-            }else if(country.value != "US"){
+            }
+            //Check if the country is not US
+            else if(country.value != "US"){
                 window.alert("Country can only be US!!");
                 fname.focus();
                 return false;
             }else{
+                //If there are no errors then ask user for confirmation to submit the data. If yes, the post request on the server is used if not the user is back to the registration page
                 return confirm ('Do you want to submit your data for registration?');
             }
         }
