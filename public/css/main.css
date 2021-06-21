@@ -52,6 +52,7 @@ form {
     left: 25%;
     right: 25%;
     width: auto;
+    height: 100%;
     border-bottom-right-radius: 25px;
     border-top-left-radius: 25px;
     border-collapse: separate;
