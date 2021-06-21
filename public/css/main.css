@@ -57,14 +57,8 @@ form {
     border-top-left-radius: 25px;
     border-collapse: separate;
     box-shadow: 0 0 10px #7a7a7a;
-    padding: 20px;
     margin-left: auto;
     margin-right: auto;
-}
-
-.form-group{
-    font-weight: 100;
-    letter-spacing: 0.5 px;
 }
 
 /* Button Style */
