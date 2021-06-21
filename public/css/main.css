@@ -63,8 +63,8 @@ form {
 }
 
 .form-group{
-    font-weight: 200;
-    letter-spacing: 1 px;
+    font-weight: 100;
+    letter-spacing: 0.5 px;
 }
 
 /* Button Style */
@@ -75,7 +75,6 @@ form {
     box-shadow: 0 0 5px #636161;
     color:black;
     text-align: center;
-    margin: 0 5px;
     border-radius: 1.5px;
 }
 
