@@ -67,7 +67,7 @@ body('zipcode', 'The Zipcode can only be of 5 or 9 digits').trim().matches(/(^\d
         //Getting the user registration data and time
         var dateTimeObject = new Date();
         var date = dateTimeObject.getFullYear() +"-"+ (dateTimeObject.getMonth()+1) +"-"+ dateTimeObject.getDate();
-        var time = dateTimeObject.getHours() +":"+ dateTimeObject.getMinutes() +":"+ dateTimeObject.getSeconds();
+        var time = (dateTimeObject.getUTCHours()-4) +":"+ dateTimeObject.getMinutes() +":"+ dateTimeObject.getSeconds();
 
         //Create the user object by fetching the data from user input
         const user = new User({
