@@ -24,6 +24,8 @@ const mongoose = require("mongoose");
 const dotenv = require('dotenv');
 dotenv.config();
 
+console.log("mongodb+srv://"+process.env.MONGO_USERNAME+":"+process.env.PASSWORD+"@cluster0.o8x5v.mongodb.net/userDB?retryWrites=true&w=majority");
+
 //Create connection with mongodb database and collection
 mongoose.connect("mongodb+srv://"+process.env.MONGO_USERNAME+":"+process.env.PASSWORD+"@cluster0.o8x5v.mongodb.net/userDB?retryWrites=true&w=majority", {useNewUrlParser : true, useFindAndModify: false, useUnifiedTopology : true});
 
