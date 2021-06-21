@@ -79,4 +79,5 @@ td {
 .admin{
     display: block;
     position: absolute;
+    width: auto;
 }
