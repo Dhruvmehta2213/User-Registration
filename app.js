@@ -20,8 +20,15 @@ const { body,validationResult } = require('express-validator');
 //Using the mongoose library for managing data between mongodb and node
 const mongoose = require("mongoose");
 
+//For reading the secrets from the .env file
+const dotenv = require('dotenv');
+dotenv.config();
+
+const connectionLink = "mongodb+srv://"+process.env.USERNAME+":"+process.env.PASSWORD+"@cluster0.o8x5v.mongodb.net/userDB?retryWrites=true&w=majority";
+console.log(connectionLink);
+
 //Create connection with mongodb database and collection
-mongoose.connect("mongodb+srv://dhruvmehta:SOULMATE@cluster0.o8x5v.mongodb.net/userDB?retryWrites=true&w=majority", {useNewUrlParser : true, useFindAndModify: false, useUnifiedTopology : true});
+mongoose.connect("mongodb+srv://"+process.env.MONGO_USERNAME+":"+process.env.PASSWORD+"@cluster0.o8x5v.mongodb.net/userDB?retryWrites=true&w=majority", {useNewUrlParser : true, useFindAndModify: false, useUnifiedTopology : true});
 
 //Creating the schema i.e. the fields for the user collection 
 const userSchema = new mongoose.Schema({
