@@ -51,6 +51,7 @@ form {
     position: absolute;
     left: 35%;
     right: 35%;
+    bottom: 5%;
     width: auto;
     border-bottom-right-radius: 25px;
     border-top-left-radius: 25px;
